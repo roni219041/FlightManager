@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Flight_Manager.Models
+{
+    public enum Nationality
+    {
+        Afghan, 
+        Albanian, 
+        Algerian, 
+        American,
+        Andorran, 
+        Angolan,
+        Anguillan, Argentine, Armenian, Australian, Austrian, Azerbaijani,
+        Bahamian, Bahraini, Bangladeshi, Barbadian, Belarusian, Belgian, Belizean, Beninese, Bermudian, Bhutanese, Bolivian,
+        Botswanan, Brazilian, British,
+        Bruneian, Bulgarian, Burkinan, Burmese,
+        Burundian, Cambodian, Cameroonian, Canadian, Chadian, Chilean, Chinese, Colombian,Congo,Croatian, Cuban, Cymraes, Cymro, Cypriot, Czech,
+        Danish,  Djiboutian,  Dominican, Dutch,
+        Ecuadorean,  Egyptian,    Emirati,
+        English, Eritrean, Estonian, Ethiopian,
+        Faroese, Fijian,  Filipino,    Finnish, French,
+        Gabonese,    Gambian, Georgian,    German,
+        Ghanaian,    Gibraltarian,    Greek,   Greenlandic,
+        Grenadian,  Guamanian,   Guatemalan, Guinean, Guyanese,
+        Haitian, Honduran,Hungarian,
+        Icelandic,   Indian,  Indonesian,  Iranian,
+        Iraqi,   Irish,   Israeli, Italian,
+        Ivorian,
+        Jamaican,    Japanese,    Jordanian,
+        Kazakh,  Kenyan,  Kittitian,
+        Kosovan, Kuwaiti, Kyrgyz,
+        Lao, Latvian, Lebanese,    Liberian,
+        Libyan,  Liechtenstein, Lithuanian,  Luxembourger,
+        Macanese,    Macedonian, Malagasy,    Malawian,
+        Malaysian,   Maldivian,   Malian,  Maltese,
+        Marshallese, Martiniquais,    Mauritanian, Mauritian,
+        Mexican, Micronesian, Moldovan,    Monegasque,
+        Mongolian,   Montenegrin, Montserratian,   Moroccan,
+        Mosotho, Mozambican,
+        Namibian,    Nauruan, Nepalese,
+        Nicaraguan,  Nigerian,    Nigerien,   Niuean,
+        NorthKorean, Norwegian,
+        Omani,
+        Pakistani,   Palauan, Palestinian, Panamanian,
+        Paraguayan,  Peruvian,
+        Polish,  Portuguese, 
+        Qatari,
+        Romanian,  Russian, Rwandan,
+        Salvadorean, Sammarinese, Samoan, Scottish,    Senegalese,  Serbian,  Singaporean, Slovak,
+        Slovenian, Somali,
+        SouthKorean, Spanish, Swedish, Swiss, Syrian,
+        Taiwanese,   Tajik,   Tanzanian,   Thai,
+        Togolese,    Tongan,  Trinidadian, Tristanian,
+        Tunisian,    Turkish, Turkmen, Tuvaluan,
+        Ugandan, Ukrainian,   Uruguayan,   Uzbek,
+        Venezuelan,  Vietnamese,
+        Vincentian,
+        Wallisian,   Welsh,
+        Yemeni,
+        Zambian, Zimbabwean
+    }
+}

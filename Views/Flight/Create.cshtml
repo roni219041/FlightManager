@@ -1,0 +1,77 @@
+﻿@model Flight_Manager.Models.Flight
+@{string now = DateTime.Now.ToString("yyyy-MM-ddTHH:mm"); }
+<div>
+    <form asp-action="Create">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="StartLocation">From:</label>
+                <input type="text" class="form-control" asp-for="StartLocation" placeholder="Enter start location" />
+                @Html.ValidationMessageFor(m => m.StartLocation)
+            </div>
+            <div class="form-group col-md-6">
+                <label for="EndLocation">To:</label>
+                <input type="text" class="form-control" asp-for="EndLocation" placeholder="Enter destination" />
+                @Html.ValidationMessageFor(m => m.EndLocation)
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="DepartureTime">Departure</label>
+                <input class="form-control" type="datetime-local" asp-for="DepartureTime" asp-format="{0:yyyy-MM-ddTHH:mm}" min=@now />
+                @Html.ValidationMessageFor(m => m.DepartureTime)
+            </div>
+            <div class="form-group col-md-6">
+                <label for="LandingTime">Arrival</label>
+                <input class="form-control" asp-for="LandingTime" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+                @Html.ValidationMessageFor(m => m.LandingTime)
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="PlaneId">Unique plane number</label>
+            <input type="text" class="form-control" asp-for="PlaneId" placeholder="Enter unique plane number" />
+            @Html.ValidationMessageFor(m => m.PlaneId)
+        </div>
+        <div class="form-group">
+            <label for="PlaneModel">Plane model</label>
+            <input type="text" class="form-control" asp-for="PlaneModel" placeholder="Enter plane model" />
+            @Html.ValidationMessageFor(m => m.PlaneModel)
+        </div>
+        <div class="form-group">
+            <label for="PilotName">Pilot name</label>
+            <input type="text" class="form-control" asp-for="PilotName" placeholder="Enter name of pilot" />
+            @Html.ValidationMessageFor(m => m.PilotName)
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="EconomyClassSeats">Count of Economy Class seats</label>
+                <input class="form-control" type="number" asp-for="EconomyClassSeats" />
+                @Html.ValidationMessageFor(m => m.EconomyClassSeats)
+            </div>
+            <div class="form-group col-md-6">
+                <label for="BusinessClassSeats">Count of Business Class seats</label>
+                <input class="form-control" type="number" asp-for="BusinessClassSeats" />
+                @Html.ValidationMessageFor(m => m.BusinessClassSeats)
+            </div>
+        </div>
+        <br />
+        <div>
+            <button class="btn btn-dark" asp-action="Create" type="submit">Add</button>
+        </div>
+        <input type="hidden" asp-for="Id">
+    </form>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        var counter = 1;
+        $(function () {
+            $('#DepartureTime').change(function () {
+                document.getElementById('LandingTime').setAttribute("min", $('#DepartureTime').val());             
+                return false;
+            });
+        });
+    </script>
+}
+
+
+

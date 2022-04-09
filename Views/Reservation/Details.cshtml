@@ -1,0 +1,101 @@
+﻿@model IList<Flight_Manager.Models.ReservationDetailsViewModel>
+
+@{
+    ViewData["Title"] = "Reservation details";
+    var ReservationId = ViewBag.ReservationId;
+}
+<h4>Flight details</h4>
+@foreach (var reservation in Model.Where(m => m.ReservationId==ReservationId))
+{
+<dl class="row">
+    <dt class="col-sm-4">
+        @Html.LabelFor(r => reservation.FlightStartLocation, "From")
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(r => reservation.FlightStartLocation)
+    </dd>
+    <dt class="col-sm-4">
+        @Html.LabelFor(r => reservation.FlightEndLocation, "To")
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(r => reservation.FlightEndLocation)
+    </dd>
+    <dt class="col-sm-4">
+        @Html.LabelFor(r => reservation.FlightDepartureTime, "Departure")
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(r => reservation.FlightDepartureTime)
+    </dd>
+    <dt class="col-sm-4">
+        @Html.LabelFor(r => reservation.FlightArrivalTime, "Arrival")
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(r => reservation.FlightArrivalTime)
+    </dd>
+    <dt class="col-sm-4">
+        @Html.LabelFor(r => reservation.CreatedOn, "Created on")
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(r => reservation.CreatedOn)
+    </dd>
+    <dt class="col-sm-4">
+        @Html.LabelFor(r => reservation.Email, "Confirmation email")
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(r => reservation.Email)
+    </dd>
+</dl>
+    foreach(var passenger in reservation.Passengers)
+    {
+        <h4>Passenger</h4>
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.LabelFor(p => passenger.FirstName, "First name")
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(p => passenger.FirstName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.LabelFor(p => passenger.Surname, "Surname")
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(p => passenger.Surname)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.LabelFor(p => passenger.LastName, "Last name")
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(p => passenger.LastName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.LabelFor(p => passenger.PersonalNumber, "Personal identification number")
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(p => passenger.PersonalNumber)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.LabelFor(p => passenger.Nationality, "Nationality")
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(p => passenger.Nationality)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.LabelFor(p => passenger.IsBusinessClass, "Economy or Business Class")
+            </dt>
+            @if (passenger.IsBusinessClass == true)
+            {
+                <dd class="col-sm-8">
+                    Business Class Seat
+                </dd>
+            }
+            else
+            {
+                <dd class="col-sm-8">
+                    Economy Class Seat
+                </dd>
+            }
+
+        </dl>
+<hr />
+    }
+}

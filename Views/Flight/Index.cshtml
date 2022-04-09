@@ -1,0 +1,81 @@
+﻿@model Flight_Manager.Models.FlightsViewModel
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+
+@{
+    ViewData["Title"] = "List of Flights";
+}
+<div>
+    <h1>Flights</h1>
+    <div class="mb-4">
+        <form asp-action="Create" asp-controller="Flight">
+            <button class="btn btn-dark" type="submit">Add Flight</button>
+        </form>
+    </div>
+
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: <input type="text" name="SearchString" value="@ViewData[" CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <button class="btn-sm btn-dark" asp-action="Index">Back to full list</button>
+            </p>
+        </div>
+    </form>
+
+    <table class="table" width="100%">
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Unique plane number</th>
+            <th>Plane model</th>
+            <th>Pilot name</th>
+            <th>Seats in Economy class</th>
+            <th>Seats in Business class</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var flight in Model.Flights)
+        {
+            <tr>
+                <td>@flight.StartLocation</td>
+                <td>@flight.EndLocation </td>
+                <td>@flight.DepartureTime</td>
+                <td>@flight.LandingTime</td>
+                <td>@flight.PlaneId </td>
+                <td>@flight.PlaneModel</td>
+                <td>@flight.PilotName</td>
+                <td>@flight.EconomyClassSeats </td>
+                <td>@flight.BusinessClassSeats</td>
+                <td>@Html.ActionLink("Details", "Details", new { id = flight.Id }, new { @class = "btn btn-dark" }) </td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = flight.Id }, new { @class = "btn btn-dark" }) </td>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = flight.Id }, new { @class = "btn btn-dark" }) </td>
+            </tr>
+        }
+    </table>
+</div>
+<hr />
+<div class="row">
+    <div class="col-sm-4">
+        @Html.PagedListPager(Model.Flights, page => Url.Action("Index", new { page }))
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+    <div class="col-sm-4 text-right">
+        <form asp-controller="Flight" asp-action="Index" method="get">
+            <label>Page size</label>
+            <select asp-controller="Flight" asp-action="Index" asp-for="@Model.PageSize" asp-route-pageSize="@Model.PageSize" asp-items="@Model.PageSizeList" onchange="this.form.submit()"></select>
+        </form>
+    </div>
+</div>
+
+
+
+
+

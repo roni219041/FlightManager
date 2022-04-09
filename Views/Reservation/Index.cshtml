@@ -1,0 +1,71 @@
+﻿@model Flight_Manager.Models.ReservationsViewModel
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@{
+    ViewData["Title"] = "List of Reservations";
+}
+<div>
+    <h1>Reservations</h1>
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <button class="btn-sm btn-dark" asp-action="Index">Back to full list</button>
+            </p>
+        </div>
+    </form>
+
+    <table class="table" width="100%">
+        <tr>
+            <th>Flight from</th>
+            <th>Flight to</th>
+            <th>Departure</th>
+            <th>Created on</th>
+            <th>Passengers</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var reservation in Model.Reservations)
+        {
+            <tr>
+                <td>@reservation.FlightStartLocation</td>
+                <td>@reservation.FlightEndLocation </td>
+                <td>@reservation.FlightDepartureTime</td>
+                <td>@reservation.CreatedOn</td>
+                <td>@reservation.PassengersCount</td>
+                <td>@reservation.Email</td>
+                <td>@Html.ActionLink("Details", "Details", new { id = reservation.ReservationId }, new { @class = "btn btn-dark" }) </td>
+                <td>
+                    @{
+                        if (reservation.IsConfirmed)
+                        {
+                            Html.ActionLink("Delete", "Delete", new { id = reservation.ReservationId }, new { @class = "btn btn-dark" });
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<hr />
+<div class="row">
+    <div class="col-sm-4">
+        @Html.PagedListPager(Model.Reservations, page => Url.Action("Index", new { page }))
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+    <div class="col-sm-4">
+        <form asp-controller="Reservation" asp-action="Index" method="get">
+            <label>Page size</label>
+            <select asp-controller="Reservation" asp-action="Index" asp-for="@Model.PageSize" asp-route-pageSize="@Model.PageSize" asp-items="@Model.PageSizeList" onchange="this.form.submit()"></select>
+        </form>
+    </div>  
+</div>
+
+
+

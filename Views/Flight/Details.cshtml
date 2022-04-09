@@ -1,0 +1,47 @@
+﻿@model Flight_Manager.Models.Flight
+
+@{
+    ViewData["Title"] = "Flight Details";
+}
+
+
+<div>
+    <h4>Flight</h4>
+    <hr />
+    <dl class="row">
+        @{
+            System.TimeSpan flightDuration = Model.LandingTime.Subtract(Model.DepartureTime);
+            string format = new String(@"\.hh\:mm");
+        }
+        <dt class="col-sm-2">
+            @Html.LabelFor(model => model.StartLocation, "From")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StartLocation)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.LabelFor(model => model.EndLocation, "To")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EndLocation)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.LabelFor(model => model.DepartureTime, "Departure")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DepartureTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.LabelFor(model => flightDuration, "Flight duration")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => flightDuration)
+        </dd>
+        <!--add list of passengers and format flightDuration-->
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-dark" })
+    @Html.ActionLink("Back", "Index", new { id = Model.Id }, new { @class = "btn btn-dark" })
+
+</div>

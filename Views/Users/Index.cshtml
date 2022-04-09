@@ -1,0 +1,104 @@
+﻿@model Flight_Manager.Models.UsersViewModel
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@{
+    ViewData["Title"] = "List of Employees";
+}
+
+<h1>Employees</h1>
+
+<form action="/identity/account/register">
+    <button class="btn btn-dark" type="submit">Add Employee</button>
+</form>
+<br />
+<div>
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <button class="btn-sm btn-dark" asp-action="Index">Back to full list</button>
+            </p>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Username
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    First name
+                </th>
+                <th>
+                    Last name
+                </th>
+                <th>
+                    Personal id number
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Phone number
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PersonalNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-dark" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-dark" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<hr />
+<div class="row">
+    <div class="col-sm-4">
+        @Html.PagedListPager(Model.Users, page => Url.Action("Index", new { page }))
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+    <div class="col-sm-4 text-right">
+        <form asp-controller="Users" asp-action="Index" method="get">
+            <label>Page size</label>
+            <select asp-controller="Users" asp-action="Index" asp-for="@Model.PageSize" asp-route-pageSize="@Model.PageSize" asp-items="@Model.PageSizeList" onchange="this.form.submit()"></select>
+        </form>
+    </div>   
+</div>
+
